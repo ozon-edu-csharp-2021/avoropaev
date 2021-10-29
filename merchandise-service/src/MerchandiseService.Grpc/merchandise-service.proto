@@ -1,0 +1,60 @@
+﻿syntax = "proto3";
+option csharp_namespace = "MerchandiseService.Grpc";
+package StockApi;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+service MerchandiseServiceGrpc {
+  rpc GetInformationAboutIssueMerchandise (GetInformationAboutIssueMerchandiseRequest) returns (GetInformationAboutIssueMerchandiseResponse);
+  rpc GetMerchandiseByID (GetMerchandiseByIDRequest) returns (GetMerchandiseByIDResponse);
+}
+
+message GetInformationAboutIssueMerchandiseRequest {
+
+}
+message GetMerchandiseByIDRequest{
+  int32 merch_id = 1;
+}
+
+message GetInformationAboutIssueMerchandiseResponse {
+  repeated GetInformationAboutIssueMerchandiseResponseUnit Merchandises = 1;
+}
+
+message GetInformationAboutIssueMerchandiseResponseUnit{
+  int32 merch_id = 1;
+  repeated GetKindOfUnit item = 2;
+  enum merch_pack {
+    NONE = 0;
+    WELCOME_PACK = 1;
+    STARTER_PACK = 2;
+    CONFERENCE_LISTENER_PACK = 3;
+    CONFERENCE_SPEAKER_PACK = 4;
+    VETERAN_PACK = 5;
+  }
+}
+
+message GetKindOfUnit{
+  enum kind_of_item
+  {
+    NONE = 0;
+    T_SHIRT = 1;
+    HOODIE = 2;
+    NOTEBOOK = 3;
+    BACKPACK = 4;
+    PEN = 5;
+    CUP = 6;
+  }
+}
+message GetMerchandiseByIDResponse{
+  int64 merch_id = 1;
+  repeated GetKindOfUnit item = 2;
+  enum merch_pack {
+    NONE = 0;
+    WELCOME_PACK = 1;
+    STARTER_PACK = 2;
+    CONFERENCE_LISTENER_PACK = 3;
+    CONFERENCE_SPEAKER_PACK = 4;
+    VETERAN_PACK = 5;
+  }
+}
